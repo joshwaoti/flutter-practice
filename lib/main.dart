@@ -5,32 +5,28 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final items = ['item1', 'item2', 'item3', 'item4', 'item5'];
+
     return MaterialApp(
-        title: 'Example App',
+        title: 'Good app',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
         home: Scaffold(
-            appBar: AppBar(
-              title: Text('List View'),
-            ),
-            body: ListView(children: [
-              ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text('Person One'),
-                  subtitle: Text('email'),
-                  trailing: Icon(Icons.arrow_forward),
-                  onTap: () => print('ListTile was Tapped')),
-              ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text('Person Two'),
-                  subtitle: Text('email'),
-                  trailing: Icon(Icons.arrow_forward),
-                  onTap: () => print('ListTile was Tapped')),
-              ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text('Person Three'),
-                  subtitle: Text('email'),
-                  trailing: Icon(Icons.arrow_forward),
-                  onTap: () => print('ListTile was Tapped'))
-            ])));
+          appBar: AppBar(title: Text('App Bar Title')),
+          body: ListView.builder(
+              itemCount: items.length,
+              itemBuilder: (context, index) {
+                final item = items[index];
+                return ListTile(
+                    title: Text(item),
+                    subtitle: Text('Subtitle for $item'),
+                    leading: Icon(Icons.star),
+                    trailing: Icon(Icons.more_vert),
+                    onTap: () {
+                      print('You just taped on $item');
+                    });
+              }),
+        ));
   }
 }
- 
